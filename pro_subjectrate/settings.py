@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pages',
     'users',
+    # 3rd party apps
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +135,6 @@ AUTH_USER_MODEL = 'users.ReviewsUser'
 LOGIN_REDIRECT_URL = 'index'
 
 LOGOUT_REDIRECT_URL = 'index'
+
+# informing crispy forms that we use bootstrap 4
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

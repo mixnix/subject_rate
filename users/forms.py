@@ -7,11 +7,11 @@ class ReviewsUserCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = ReviewsUser
-        fields = UserCreationForm.Meta.fields
+        fields = ('username', 'email')
 
 
 class ReviewsUserChangeForm(UserChangeForm):
 
     class Meta:
         model = ReviewsUser
-        fields = UserChangeForm.Meta.fields
+        fields = ('username', 'email')
