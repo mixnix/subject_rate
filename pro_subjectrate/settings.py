@@ -25,7 +25,7 @@ SECRET_KEY = 'blr(tg5fcq=yhomm*04z36vxlv7#a_&w*57v3yc@@8lwar#0(i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

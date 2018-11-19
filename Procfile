@@ -1,0 +1,1 @@
+web: gunicorn pro_subjectrate.wsgi --log-file -
