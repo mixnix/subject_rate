@@ -13,7 +13,7 @@
 {% block navbar %}
 {#    Navbar#}
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-   <a class="navbar-brand" href="">Courses Reviews</a>
+   <a class="navbar-brand" href="{% url 'index' %}">Courses Reviews</a>
    {% if user.is_authenticated %}
    <ul class="navbar-nav mr-auto">
       <li class="nav-item"><a href="">+ New</a></li>
@@ -35,11 +35,11 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right"
                aria-labelledby="userMenu">
-               <a class="dropdown-item" href="">
+               <a class="dropdown-item" href="{% url 'password_change' %}">
                Change Password
                </a>
                <div class="dropdown-divider"></div>
-               <a class="dropdown-item" href="">Log out</a>
+               <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
             </div>
          </li>
       </ul>
