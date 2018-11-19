@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="review-entry">
+        <h2>Course name: {{ object.course_name }}</h2>
+            <p>Review by {{ object.author }} | {{ object.date }}</p>
+            <p>{{ object.body }}</p>
+    </div>
+    <p><a href="{% url 'review-edit' review.pk %}">Edit</a>
+    | <a href="{% url 'review-delete' review.pk %}">Delete</a> </p>
+    <p>Back to <a href="{% url 'review-list' %}">All Reviews</a>. </p>
+{% endblock content %}

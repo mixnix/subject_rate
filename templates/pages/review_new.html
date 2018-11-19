@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>New review</h1>
+    <a href="{% url 'professor-new' %}">New professor</a> |
+    <a href="{% url 'course-new' %}">New course</a>
+    <hr>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-success ml-2" type="submit">Save</button>
+    </form>
+
+{% endblock %}
