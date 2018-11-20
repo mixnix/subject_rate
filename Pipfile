@@ -8,6 +8,7 @@ django = "*"
 gunicorn = "*"
 whitenoise = "*"
 django-crispy-forms = "*"
+python-decouple = "*"
 
 [dev-packages]
 
