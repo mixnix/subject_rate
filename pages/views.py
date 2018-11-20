@@ -2,11 +2,11 @@ from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
-
+from django.utils.decorators import method_decorator
 
 from .models import Review, Professor, CourseName
 from .forms import CreateReviewForm
-
+from .decorators import user_is_review_post_user
 
 class IndexView(TemplateView):
     template_name = 'pages/index.html'
@@ -23,6 +23,7 @@ class ReviewDetailView(LoginRequiredMixin, DetailView):
     template_name = 'pages/review_detail.html'
 
 
+@method_decorator(user_is_review_post_user, name='dispatch')
 class ReviewUpdateView(LoginRequiredMixin, UpdateView):
     model = Review
     fields = ['course_name', 'professor_name',
@@ -30,6 +31,7 @@ class ReviewUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'pages/review_edit.html'
 
 
+@method_decorator(user_is_review_post_user, name='dispatch')
 class ReviewDeleteView(LoginRequiredMixin, DeleteView):
     model = Review
     template_name = 'pages/review_delete.html'
