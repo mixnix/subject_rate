@@ -6,7 +6,10 @@
             <p>Review by {{ object.author }} | {{ object.date }}</p>
             <p>{{ object.review_body }}</p>
     </div>
-    <p><a href="{% url 'review-edit' review.pk %}">Edit</a>
-    | <a href="{% url 'review-delete' review.pk %}">Delete</a> </p>
+    {% if request.user == object.author %}
+        <p><a href="{% url 'review-edit' review.pk %}">Edit</a>
+            | <a href="{% url 'review-delete' review.pk %}">Delete</a> </p>
+    {% endif %}
+
     <p>Back to <a href="{% url 'review-list' %}">All Reviews</a>. </p>
 {% endblock content %}

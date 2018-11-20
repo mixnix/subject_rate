@@ -17,7 +17,7 @@ under construction
 
 ### Installing
 
-And repeat
+Download source code
 
 ```
 git clone https://github.com/mixnix/subject_rate
