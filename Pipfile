@@ -9,8 +9,8 @@ gunicorn = "*"
 whitenoise = "*"
 django-crispy-forms = "*"
 python-decouple = "*"
-"psycopg2" = "*"
 dj-database-url = "*"
+"psycopg2-binary" = "*"
 
 [dev-packages]
 

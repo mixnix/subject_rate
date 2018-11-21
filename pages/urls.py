@@ -16,9 +16,9 @@ urlpatterns = [
          views.ReviewDeleteView.as_view(), name='review-delete'),
     path('new/', views.ReviewCreateView.as_view(), name='review-new'),
     path('new-professor/', views.ProfessorCreateView.as_view(model=Professor,
-                                                             success_url='/reviews/'), name='professor-new'),
+                                                             success_url='/new/'), name='professor-new'),
     path('new-course/', views.CourseCreateView.as_view(model=CourseName,
-                                                       success_url='/reviews/'), name='course-new'),
+                                                       success_url='/new/'), name='course-new'),
     path('by-subject/', views.CourseBySubjectView.as_view(), name='reviews-by-subject'),
 
 ]
