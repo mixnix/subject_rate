@@ -82,12 +82,12 @@ WSGI_APPLICATION = 'pro_subjectrate.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 #
 
-HEROKU_DEP = config('HEROKU_DEP', cast=bool)
 
 
 
 # this is final version but for now I am making it as simple as possible before server starts working
 
+# HEROKU_DEP = config('HEROKU_DEP', cast=bool)
 # DATABASES = {}
 # if(HEROKU_DEP):
 #     DATABASES = {
