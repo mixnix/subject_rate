@@ -87,31 +87,31 @@ WSGI_APPLICATION = 'pro_subjectrate.wsgi.application'
 
 # this is final version but for now I am making it as simple as possible before server starts working
 
-# HEROKU_DEP = config('HEROKU_DEP', cast=bool)
-# DATABASES = {}
-# if(HEROKU_DEP):
-#     DATABASES = {
-#         'default': dj_database_url.config(
-#             default=config('DATABASE_URL')
-#         )
-#     }
-# else:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#             'NAME': config('DB_NAME'),
-#             'USER': config('DB_USER'),
-#             'PASSWORD': config('DB_PASSWORD'),
-#             'HOST': 'localhost',
-#             'PORT': '5432',
-#         }
-#     }
+HEROKU_DEP = config('HEROKU_DEP', cast=bool)
+DATABASES = {}
+if(HEROKU_DEP):
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=config('DATABASE_URL')
+        )
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': config('DB_NAME'),
+            'USER': config('DB_USER'),
+            'PASSWORD': config('DB_PASSWORD'),
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+    }
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
-}
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=config('DATABASE_URL')
+#     )
+# }
 
 # db_from_env = dj_database_url.config()
 # DATABASES['default'].update(db_from_env)
