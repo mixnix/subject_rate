@@ -33,13 +33,31 @@
     <hr>
     <form action="" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+{#        {{ form.as_p }} #}
 {#        The form.as_p use it as comparison how your form can look better #}
-{#        {{ form.course_name }}#}
-{#        {{ form.professor_name }}#}
-{#        {{ form.how_easy }}#}
-{#        {{ form.how_interesting }}#}
-{#        {{ form.review_body }}#}
+        <p>
+            <label for="id_course_name">Course name:</label>
+            {{ form.course_name }}
+        </p>
+        <p>
+            <label for="id_professor_name">Professor name:</label>
+            {{ form.professor_name }}
+        </p>
+        <p>
+            <label for="id_how_easy">How easy:</label>
+            {{ form.how_easy }}
+
+        </p>
+        <p>
+            <label for="id_how_interesting">How interesting:</label>
+            {{ form.how_interesting }}
+
+        </p>
+        <p>
+            <label for="id_review_body">Review body:</label>
+            {{ form.review_body }}
+
+        </p>
         <button class="btn btn-success ml-2" type="submit">Save</button>
     </form>
 
