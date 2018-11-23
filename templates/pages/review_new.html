@@ -1,6 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <script>
+        $(function () {
+            $("#slider-range").slider({
+                range: false,
+                min: 0,
+                max: 100,
+                values: [0],
+                slide: function (event, ui) {
+                    $("#amount").val(ui.values[0]);
+                }
+            });
+            $("#amount").val($("#slider-range").slider("values", 0));
+        });
+        $(function () {
+            $("#slider-range2").slider({
+                range: false,
+                min: 0,
+                max: 100,
+                values: [0],
+                slide: function (event, ui) {
+                    $("#amount2").val(ui.values[0]);
+                }
+            });
+            $("#amount2").val($("#slider-range2").slider("values", 0));
+        });
+    </script>
     <h1>New review</h1>
     <a href="{% url 'professor-new' %}">New professor</a> |
     <a href="{% url 'course-new' %}">New course</a>
@@ -8,6 +34,12 @@
     <form action="" method="post">
         {% csrf_token %}
         {{ form.as_p }}
+{#        The form.as_p use it as comparison how your form can look better #}
+{#        {{ form.course_name }}#}
+{#        {{ form.professor_name }}#}
+{#        {{ form.how_easy }}#}
+{#        {{ form.how_interesting }}#}
+{#        {{ form.review_body }}#}
         <button class="btn btn-success ml-2" type="submit">Save</button>
     </form>
 

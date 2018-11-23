@@ -3,17 +3,20 @@ from django.conf import settings
 from django.urls import reverse
 from django.core.validators import MaxValueValidator, MinValueValidator
 
+
 class CourseName(models.Model):
     course_name = models.CharField(max_length=225)
 
     def __str__(self):
         return self.course_name
 
+
 class Professor(models.Model):
     professor_name = models.CharField(max_length=255, default="")
 
     def __str__(self):
         return self.professor_name
+
 
 class Review(models.Model):
 
@@ -51,4 +54,3 @@ class Review(models.Model):
 
     def get_absolute_url(self):
         return reverse('review-detail', args=[str(self.id)])
-
