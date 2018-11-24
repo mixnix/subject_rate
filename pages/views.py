@@ -9,7 +9,6 @@ from .models import Review, Professor, CourseName
 from .forms import CreateReviewForm
 from .decorators import user_is_review_post_user
 
-from ..pro_subjectrate import settings
 
 class IndexView(TemplateView):
     template_name = 'pages/index.html'
