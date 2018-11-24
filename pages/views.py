@@ -4,10 +4,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 
+
 from .models import Review, Professor, CourseName
 from .forms import CreateReviewForm
 from .decorators import user_is_review_post_user
 
+from ..pro_subjectrate import settings
 
 class IndexView(TemplateView):
     template_name = 'pages/index.html'
@@ -76,3 +78,6 @@ class CourseBySubjectView(LoginRequiredMixin, ListView):
             .filter(course_name__course_name__contains=self
                     .request.GET.get('myquery', ''))\
             .order_by('creation_date')
+
+
+

@@ -17,10 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
 
+from . import views
+
 urlpatterns = [
     path('', RedirectView.as_view(url='/index/', permanent=False)),
     path('', include('pages.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('users.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+    path(r'^.well-known/acme-challenge/.*$',
+        views.acme_challenge, name='acme-challenge'),
 ]
