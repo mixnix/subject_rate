@@ -1,64 +1,100 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+    <style>
+
+
+    </style>
     <script>
-        $(function () {
-            $("#slider-range").slider({
-                range: false,
-                min: 0,
-                max: 100,
-                values: [0],
-                slide: function (event, ui) {
-                    $("#amount").val(ui.values[0]);
-                }
-            });
-            $("#amount").val($("#slider-range").slider("values", 0));
-        });
-        $(function () {
-            $("#slider-range2").slider({
-                range: false,
-                min: 0,
-                max: 100,
-                values: [0],
-                slide: function (event, ui) {
-                    $("#amount2").val(ui.values[0]);
-                }
-            });
-            $("#amount2").val($("#slider-range2").slider("values", 0));
-        });
+        function setval(source, target){
+            document.getElementById(target.id).innerHTML = source.value;
+        }
+        {#$("#mustbewide").attr("")#}
     </script>
-    <h1>New review</h1>
-    <a href="{% url 'professor-new' %}">New professor</a> |
-    <a href="{% url 'course-new' %}">New course</a>
+
+    <div class="row">
+        <div class="col-md-4">
+            <a href="{% url 'course-new' %}">Add course name</a>
+            |
+            <a href="{% url 'professor-new' %}">Add professor</a>
+        </div>
+    </div>
+
     <hr>
+
     <form action="" method="post">
-        {% csrf_token %}
-{#        {{ form.as_p }} #}
-{#        The form.as_p use it as comparison how your form can look better #}
-        <p>
-            <label for="id_course_name">Course name:</label>
-            {{ form.course_name }}
-        </p>
-        <p>
-            <label for="id_professor_name">Professor name:</label>
-            {{ form.professor_name }}
-        </p>
-        <p>
-            <label for="id_how_easy">How easy:</label>
-            {{ form.how_easy }}
 
-        </p>
-        <p>
-            <label for="id_how_interesting">How interesting:</label>
-            {{ form.how_interesting }}
+        <div class="row">
 
-        </p>
-        <p>
-            <label for="id_review_body">Review body:</label>
-            {{ form.review_body }}
 
-        </p>
-        <button class="btn btn-success ml-2" type="submit">Save</button>
+            <div class="col-md-3">
+                {% csrf_token %}
+
+                <div class="panel panel-default">
+                    <div class="panel-heading"></div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <p>
+                                <label for="id_course_name">Course name:</label>
+                                <br>
+                                {{ form.course_name }}
+                            </p>
+                            <p>
+                                <label for="id_professor_name">Professor name:</label>
+                                <br>
+                                {{ form.professor_name }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading"></div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="id_how_easy">How easy:</label>
+                            <br>
+                            {{ form.how_easy }}
+                            <br>
+                            <p class="text-center text-primary" id="easyval">0</p>
+                            <br>
+
+                            <label for="id_how_interesting">How interesting:</label>
+                            <br>
+                            {{ form.how_interesting }}
+                            <br>
+                            <p class="text-center text-primary" id="interestval">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading"></div>
+                    <div class="panel-body">
+                        <div class="form-group">
+
+                            <p>
+                                <label for="id_review_body">Review body:</label>
+                                <br>
+                                {{ form.review_body }}
+                                <br>
+                                <button class="btn btn-success ml-2" type="submit">Save</button>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
     </form>
+
 
 {% endblock %}

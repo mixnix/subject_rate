@@ -1,19 +1,30 @@
-from django.forms import ModelForm, Form
+from django.forms import ModelForm, Form, widgets
 from django import forms
 from .models import Review, Professor, CourseName
 
-#
-# class CreateReviewForm(ModelForm):
-#     class Meta:
-#         model = Review
-#         fields = ['course_name', 'professor_name', 'how_easy', 'how_interesting', 'review_body']
-# #
 
+class CreateReviewForm(ModelForm):
+    class Meta:
+        model = Review
+        fields = ['course_name', 'professor_name', 'how_easy',
+                  'how_interesting', 'review_body']
 
-class CreateReviewForm(Form):
-    course_name = forms.ModelChoiceField(queryset=CourseName.objects.all())
-    professor_name = forms.ModelChoiceField(queryset=Professor.objects.all())
-    # todo: make constrainsts so that user can enter only value from 0 to 100
-    how_easy = forms.IntegerField()
-    how_interesting = forms.IntegerField()
-    review_body = forms.CharField(widget=forms.Textarea)
+    course_name = forms.ModelChoiceField(queryset=CourseName.objects.all(),
+                                         widget=forms.Select(attrs={'style': 'width:100%'}))
+    professor_name = forms.ModelChoiceField(queryset=Professor.objects.all(),
+                                            widget=forms.Select(attrs={'style': 'width:100%'}))
+    how_easy = forms.IntegerField(
+        widget=widgets.NumberInput(attrs={
+            'id': 'easyslider', 'type': 'range', 'step': '1',
+            'onchange': 'setval(this, easyval)',
+            'oninput': 'setval(this, easyval)',
+            'style': 'width:100%'
+        }))
+    how_interesting = forms.IntegerField(
+        widget=widgets.NumberInput(attrs={
+            'id': 'interestslider', 'type': 'range', 'step': '1',
+            'onchange': 'setval(this, interestval)',
+            'oninput': 'setval(this, interestval)',
+            'style': 'width:100%'
+        }))
+    review_body = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'style': 'width:100%'}))
