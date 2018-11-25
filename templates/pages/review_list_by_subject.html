@@ -27,14 +27,18 @@ This is result of search by subject
             <tr>
                <td>{{ review.course_name }}</td>
                <td>{{ review.professor_name }}</td>
-               <td>
+               <td style="width:15%">
                   <div class="progress">
-                     <div class="progress-bar" role="progressbar" style="width: {{ review.how_easy }}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                     <div class="progress-bar" role="progressbar" style="width: {{ review.how_easy }}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                         {{ review.how_easy }}%
+                     </div>
                   </div>
                </td>
-               <td>
+               <td style="width:15%">
                   <div class="progress">
-                     <div class="progress-bar" role="progressbar" style="width: {{ review.how_interesting }}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                     <div class="progress-bar" role="progressbar" style="width: {{ review.how_interesting }}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                         {{ review.how_interesting }}%
+                     </div>
                   </div>
                </td>
                <td>{{ review.author }}</td>
