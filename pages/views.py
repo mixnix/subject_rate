@@ -28,9 +28,10 @@ class ReviewDetailView(LoginRequiredMixin, DetailView):
 @method_decorator(user_is_review_post_user, name='dispatch')
 class ReviewUpdateView(LoginRequiredMixin, UpdateView):
     model = Review
-    fields = ['course_name', 'professor_name',
-              'how_easy', 'how_interesting', 'review_body']
-    template_name = 'pages/review_edit.html'
+    # fields = ['course_name', 'professor_name',
+    #           'how_easy', 'how_interesting', 'review_body']
+    template_name = 'pages/review_new.html'
+    form_class = CreateReviewForm
 
 
 @method_decorator(user_is_review_post_user, name='dispatch')
