@@ -7,7 +7,7 @@
 {% block content %}
 
 
-<div class="container">
+    <div class="container">
 
         <div class="row">
 
@@ -22,9 +22,9 @@
                                 <script>
                                     $(function() {
                                         var availableClasses = {{ subject_list|safe }}
-                                        $("#search_by_class").autocomplete({
-                                            source: availableClasses
-                                        });
+                                            $("#search_by_class").autocomplete({
+                                                source: availableClasses
+                                            });
                                     });
                                 </script>
                                 <input name="myquery" class="form-control ui-autocomplete-input"
@@ -40,46 +40,50 @@
                 </div>
             </div>
         </div>
-    <br>
+        <br>
 
-      <table class="table table-hover">
-         <thead>
+        <table class="table table-hover">
+            <thead>
             <tr>
-               <th scope="col">Subject Name</th>
-               <th scope="col">Professor</th>
-               <th scope="col">How easy</th>
-               <th scope="col">How interesting</th>
-               <th scope="col">Author</th>
-               <th scope="col">Creation date</th>
+                <th scope="col">Subject Name</th>
+                <th scope="col">Professor</th>
+                <th scope="col">How easy</th>
+                <th scope="col">How interesting</th>
+                <th scope="col">Author</th>
+                <th scope="col">Creation date</th>
+                <th scope="col">Read</th>
             </tr>
-         </thead>
-         <tbody>
+            </thead>
+            <tbody>
             {% for review in object_list %}
-            <tr class='clickable-row' data-href='{% url 'review-detail' pk=review.id %}'>
-               <td>{{ review.course_name }}</td>
-               <td>{{ review.professor_name }}</td>
-               <td style="width:15%">
-                  <div class="progress">
-                     <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{ review.how_easy }}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                         {{ review.how_easy }}%
-                     </div>
-                  </div>
-               </td>
-               <td style="width:15%">
-                  <div class="progress">
-                     <div class="progress-bar" role="progressbar" style="width: {{ review.how_interesting }}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                         {{ review.how_interesting }}%
-                     </div>
-                  </div>
-               </td>
-               <td>{{ review.author }}</td>
-               <td>{{ review.creation_date }}</td>
-            </tr>
+                <tr class='clickable-row' data-href='{% url 'review-detail' pk=review.id %}'>
+                    <td>{{ review.course_name }}</td>
+                    <td>{{ review.professor_name }}</td>
+                    <td style="width:15%">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{ review.how_easy }}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                {{ review.how_easy }}%
+                            </div>
+                        </div>
+                    </td>
+                    <td style="width:15%">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: {{ review.how_interesting }}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                {{ review.how_interesting }}%
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{ review.author }}</td>
+                    <td>{{ review.creation_date }}</td>
+                    <td>
+                        <button type="button" class="btn btn-info" href="{% url 'review-detail' pk=review.id %}">Read</button>
+                    </td>
+                </tr>
             {% endfor %}
-         </tbody>
-      </table>
+            </tbody>
+        </table>
 
-</div>
+    </div>
 
 
 
