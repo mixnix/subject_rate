@@ -19,8 +19,16 @@
                     <div class="panel-body">
                         <form method="GET" action="{% url  'reviews-by-subject' %}">
                             <div class="form-group">
+                                <script>
+                                    $(function() {
+                                        var availableClasses = {{ subject_list|safe }}
+                                        $("#search_by_class").autocomplete({
+                                            source: availableClasses
+                                        });
+                                    });
+                                </script>
                                 <input name="myquery" class="form-control ui-autocomplete-input"
-                                       value="{{ request.GET.myquery }}" placeholder="subject name"
+                                       id="search_by_class" value="{{ request.GET.myquery }}" placeholder="subject name"
                                        autocomplete="off">
                                 <br>
                                 <button class="btn btn-default" type="submit">

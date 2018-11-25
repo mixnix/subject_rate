@@ -19,6 +19,15 @@ class ReviewListView(LoginRequiredMixin, ListView):
     template_name = 'pages/review_list.html'
     paginate_by = 10
 
+    def get_context_data(self, **kwargs):
+        context = super(ReviewListView, self).get_context_data(**kwargs)
+
+        subject_list = []
+        for review in Review.objects.all():
+            subject_list.append(review.course_name.course_name)
+        context['subject_list'] = subject_list
+        return context
+
 
 class ReviewDetailView(LoginRequiredMixin, DetailView):
     model = Review
