@@ -24,7 +24,7 @@ This is result of search by subject
          </thead>
          <tbody>
             {% for review in object_list %}
-            <tr>
+            <tr class='clickable-row' data-href='{% url 'review-detail' pk=review.id %}'>
                <td>{{ review.course_name }}</td>
                <td>{{ review.professor_name }}</td>
                <td style="width:15%">
