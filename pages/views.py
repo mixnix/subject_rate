@@ -84,7 +84,7 @@ class CourseBySubjectView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Review.objects\
-            .filter(course_name__course_name__contains=self
+            .filter(course_name__course_name__icontains=self
                     .request.GET.get('myquery', ''))\
             .order_by('creation_date')
 
