@@ -43,6 +43,8 @@ class ReviewUpdateView(LoginRequiredMixin, UpdateView):
     form_class = CreateReviewForm
 
 
+
+
 @method_decorator(user_is_review_post_user, name='dispatch')
 class ReviewDeleteView(LoginRequiredMixin, DeleteView):
     model = Review
@@ -55,6 +57,13 @@ class ReviewCreateView(LoginRequiredMixin, FormView):
     template_name = 'pages/review_new.html'
     form_class = CreateReviewForm
     success_url = reverse_lazy('review-list')
+
+    def get_context_data(self, **kwargs):
+        context = super(ReviewCreateView, self).get_context_data(**kwargs)
+
+        context['easyinit'] = '1'
+        context['interestinit'] = '1'
+        return context
 
     def form_valid(self, form):
         form.instance.author = self.request.user

@@ -18,13 +18,13 @@ class CreateReviewForm(ModelForm):
             'id': 'easyslider', 'type': 'range', 'step': '1',
             'onchange': 'setval(this, easyval)',
             'oninput': 'setval(this, easyval)',
-            'style': 'width:100%'
+            'style': 'width:100%',
         }))
     how_interesting = forms.IntegerField(
         widget=widgets.NumberInput(attrs={
             'id': 'interestslider', 'type': 'range', 'step': '1',
             'onchange': 'setval(this, interestval)',
             'oninput': 'setval(this, interestval)',
-            'style': 'width:100%'
+            'style': 'width:100%',
         }))
     review_body = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'style': 'width:100%'}))

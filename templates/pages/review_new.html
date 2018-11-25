@@ -8,9 +8,9 @@
     </style>
     <script>
         function setval(source, target){
-            document.getElementById(target.id).innerHTML = source.value;
+            document.getElementById(target.id).innerHTML = source.value + "%";
         }
-        {#$("#mustbewide").attr("")#}
+
     </script>
 
     <div class="row">
@@ -60,14 +60,26 @@
                             <br>
                             {{ form.how_easy }}
                             <br>
-                            <p class="text-center text-primary" id="easyval">0</p>
+                            <p class="text-center text-primary" id="easyval">
+                                {% if review %}
+                                    {{ review.how_easy }}%
+                                {% else %}
+                                    50%
+                                {% endif %}
+                            </p>
                             <br>
 
                             <label for="id_how_interesting">How interesting:</label>
                             <br>
                             {{ form.how_interesting }}
                             <br>
-                            <p class="text-center text-primary" id="interestval">0</p>
+                            <p class="text-center text-primary" id="interestval">
+                                {% if review %}
+                                    {{ review.how_interesting }}%
+                                {% else %}
+                                    50%
+                                {% endif %}
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -78,21 +90,17 @@
                     <div class="panel-heading"></div>
                     <div class="panel-body">
                         <div class="form-group">
-
                             <p>
                                 <label for="id_review_body">Review body:</label>
                                 <br>
                                 {{ form.review_body }}
                                 <br>
                                 <button class="btn btn-success ml-2" type="submit">Save</button>
-
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
     </form>
 
