@@ -7,6 +7,8 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class CourseName(models.Model):
     course_name = models.CharField(max_length=225)
 
+    course_code = models.CharField(max_length=30, null=True)
+
     def __str__(self):
         return self.course_name
 
