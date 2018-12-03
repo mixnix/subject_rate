@@ -1,7 +1,9 @@
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 
 
@@ -48,16 +50,68 @@ class ReviewDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('review-list')
 
 
-class ReviewCreateView(LoginRequiredMixin, FormView):
-    model = Review
-    template_name = 'pages/review_new.html'
-    form_class = CreateReviewForm
-    success_url = reverse_lazy('review-list')
+def ReviewCreateView(request):
+# if this is a POST request we need to process the form data
 
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        form.save()
-        return super().form_valid(form)
+    # user = request.user
+    # employee = user.employee
+
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = CreateReviewForm(request.POST)
+        # q = CourseName.objects.filter(
+        #     id__in=CourseName.objects.values('course_name')
+        #         .distinct()
+        #         .values_list('id', flat=True))
+        # check whether it's valid:
+        if form.is_valid():
+            # check if course code is the same as in the used course name
+            # if not then create such a course
+            # manually create a review and save it
+
+            # then i want to create a field with data list
+            # data list should be dynamically created after picking subject
+            form.instance.author = request.user
+            form.save()
+
+            # # Save User model fields
+            # user.first_name = request.POST['first_name']
+            # user.last_name = request.POST['last_name']
+            # user.save()
+            #
+            # # Save Employee model fields
+            # employee.company = request.POST['company']
+            # employee.news_notifications = request.POST['news_notifications']
+            # employee.save()
+
+            # redirect to the index page
+            return HttpResponseRedirect(reverse('review-list'))
+
+    # if a GET (or any other method)
+    else:
+        # form = UserSettingsForm(instance=user)
+
+        form = CreateReviewForm()
+
+    return render(request, 'pages/review_new.html', {'form': form})
+
+
+# class ReviewCreateView(LoginRequiredMixin, FormView):
+#     model = Review
+#     template_name = 'pages/review_new.html'
+#     form_class = CreateReviewForm
+#     success_url = reverse_lazy('review-list')
+#
+#     def form_valid(self, form):
+#         # todo dlaczego tutaj przypisujesz jakiegos autora,
+#         # wydaje mi sie ze powinienes tu sprawdzic czy wprowadzili
+#         # poprawne wiadomosci by nie mozna bylo na sile wyslac zlych wartosci
+#         # ktore zapisze serwer do bazy danych
+#         # wyszukaj na stack overflow to
+#         # popraw to tez w review update view
+#         form.instance.author = self.request.user
+#         form.save()
+#         return super().form_valid(form)
 
 
 class ProfessorCreateView(LoginRequiredMixin, CreateView):
