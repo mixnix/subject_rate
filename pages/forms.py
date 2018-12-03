@@ -1,5 +1,7 @@
 from django.forms import ModelForm, Form, widgets
 from django import forms
+import itertools
+
 from .models import Review, Professor, CourseName
 
 
@@ -10,7 +12,7 @@ class CreateReviewForm(ModelForm):
                   'how_interesting', 'review_body']
 
     # todo: w htmlu te inputy nie maja labeli przez co chyba nie sa powiazane
-    course_name = forms.ModelChoiceField(queryset=CourseName.objects.all(),
+    course_name = forms.ModelChoiceField(queryset=CourseName.objects.all().distinct('course_name'),
                                          widget=forms.Select(attrs={'style': 'width:100%'}))
     professor_name = forms.ModelChoiceField(queryset=Professor.objects.all(),
                                             widget=forms.Select(attrs={'style': 'width:100%'}))
