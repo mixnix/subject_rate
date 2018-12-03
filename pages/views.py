@@ -59,13 +59,12 @@ def ReviewCreateView(request):
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = CreateReviewForm(request.POST)
-        # q = CourseName.objects.filter(
-        #     id__in=CourseName.objects.values('course_name')
-        #         .distinct()
-        #         .values_list('id', flat=True))
+
+
         # check whether it's valid:
         if form.is_valid():
             # check if course code is the same as in the used course name
+            # if not then check if there is a course with such a course code plus course name
             # if not then create such a course
             # manually create a review and save it
 
@@ -91,6 +90,8 @@ def ReviewCreateView(request):
     else:
         # form = UserSettingsForm(instance=user)
 
+        # I am gonna populate it with unique course names
+        # CourseName.objects.values('course_name').distinct()
         form = CreateReviewForm()
 
     return render(request, 'pages/review_new.html', {'form': form})
