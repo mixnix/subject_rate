@@ -22,12 +22,14 @@ class Review(models.Model):
 
     course_name = models.ForeignKey(
         CourseName,
-        on_delete=models.CASCADE
+        null=True,
+        on_delete=models.SET_NULL
     )
 
     professor_name = models.ForeignKey(
         Professor,
-        on_delete=models.CASCADE
+        null=True,
+        on_delete=models.SET_NULL
     )
 
     how_easy = models.IntegerField(
