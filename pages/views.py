@@ -17,6 +17,7 @@ class IndexView(TemplateView):
 class ReviewListView(LoginRequiredMixin, ListView):
     model = Review
     template_name = 'pages/review_list.html'
+    context_object_name = "review_list"
     paginate_by = 10
 
     def get_context_data(self, **kwargs):
@@ -27,6 +28,9 @@ class ReviewListView(LoginRequiredMixin, ListView):
             subject_list.append(review.course_name.course_name)
         context['subject_list'] = subject_list
         return context
+
+    def get_queryset(self):
+        return Review.objects.order_by("-creation_date")
 
 
 class ReviewDetailView(LoginRequiredMixin, DetailView):
