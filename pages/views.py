@@ -19,6 +19,7 @@ class IndexView(TemplateView):
 class ReviewListView(LoginRequiredMixin, ListView):
     model = Review
     template_name = 'pages/review_list.html'
+    context_object_name = "review_list"
     paginate_by = 10
 
     def get_context_data(self, **kwargs):
