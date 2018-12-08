@@ -31,6 +31,10 @@ class ReviewListView(LoginRequiredMixin, ListView):
         context['subject_list'] = subject_list
         return context
 
+    def get_queryset(self):
+        return Review.objects.order_by("-creation_date")
+
+
 
 class ReviewDetailView(LoginRequiredMixin, DetailView):
     model = Review
