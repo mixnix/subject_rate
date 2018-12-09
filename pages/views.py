@@ -26,7 +26,7 @@ class ReviewListView(LoginRequiredMixin, ListView):
         subject_list = []
         for review in Review.objects.all():
             subject_list.append(review.course_name.course_name)
-        context['subject_list'] = subject_list
+        context['subject_list'] = list(set(subject_list))
         return context
 
     def get_queryset(self):
