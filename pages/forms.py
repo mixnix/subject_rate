@@ -9,9 +9,9 @@ class CreateReviewForm(ModelForm):
         fields = ['course_name', 'professor_name', 'how_easy',
                   'how_interesting', 'review_body']
 
-    course_name = forms.ModelChoiceField(queryset=CourseName.objects.all(),
+    course_name = forms.ModelChoiceField(queryset=CourseName.objects.order_by('course_name'),
                                          widget=forms.Select(attrs={'style': 'width:100%'}))
-    professor_name = forms.ModelChoiceField(queryset=Professor.objects.all(),
+    professor_name = forms.ModelChoiceField(queryset=Professor.objects.order_by('professor_name'),
                                             widget=forms.Select(attrs={'style': 'width:100%'}))
     how_easy = forms.IntegerField(
         widget=widgets.NumberInput(attrs={
