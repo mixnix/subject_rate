@@ -42,66 +42,73 @@
         </div>
         <br>
 
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th scope="col">Subject Name</th>
-                <th scope="col">Professor</th>
-                <th scope="col">How easy</th>
-                <th scope="col">How interesting</th>
-                <th scope="col">Author</th>
-                <th scope="col">Creation date</th>
-                <th scope="col">Read</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for review in object_list %}
-                <tr class='clickable-row' data-href='{% url 'review-detail' pk=review.id %}'>
-                    <td>{{ review.course_name }}</td>
-                    <td>{{ review.professor_name }}</td>
-                    <td style="width:15%">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{ review.how_easy }}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                <span class="blacktext">{{ review.how_easy }}%</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td style="width:15%">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-success"  role="progressbar" style="width: {{ review.how_interesting }}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                <span class="blacktext">{{ review.how_interesting }}%</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td>{{ review.author }}</td>
-                    <td>{{ review.creation_date }}</td>
-                    <td>
-                        <button type="button" class="btn btn-info" href="{% url 'review-detail' pk=review.id %}">click</button>
-                    </td>
+        <div class="row">
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Subject Name</th>
+                    <th scope="col">Professor</th>
+                    <th scope="col">How easy</th>
+                    <th scope="col">How interesting</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Creation date</th>
+                    <th scope="col">Read</th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {% for review in object_list %}
+                    <tr class='clickable-row' data-href='{% url 'review-detail' pk=review.id %}'>
+                        <td>{{ review.course_name }}</td>
+                        <td>{{ review.professor_name }}</td>
+                        <td style="width:15%">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{ review.how_easy }}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                    <span class="blacktext">{{ review.how_easy }}%</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="width:15%">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-success"  role="progressbar" style="width: {{ review.how_interesting }}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                    <span class="blacktext">{{ review.how_interesting }}%</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{ review.author }}</td>
+                        <td>{{ review.creation_date }}</td>
+                        <td>
+                            <button type="button" class="btn btn-info" href="{% url 'review-detail' pk=review.id %}">click</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
+        <div class="row float-right">
 
-     {# .... **Now the pagination section** .... #}
-        {% if is_paginated %}
-            <div class="pagination">
+            {# .... **Now the pagination section** .... #}
+            {% if is_paginated %}
+                <div class="pagination float-right">
             <span class="page-links">
                 {% if page_obj.has_previous %}
-                    <a href="/all?page={{ page_obj.previous_page_number }}">previous</a>
+                    <a class="btn btn-primary" href="/all?page={{ page_obj.previous_page_number }}">previous</a>
                 {% endif %}
                 <span class="page-current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
                 </span>
                 {% if page_obj.has_next %}
-                    <a href="/all?page={{ page_obj.next_page_number }}">next</a>
+                    <a class="btn btn-primary" href="/all?page={{ page_obj.next_page_number }}">next</a>
                 {% endif %}
             </span>
-            </div>
-            <br>
-            <br>
-        {% endif %}
+                </div>
+                <br>
+                <br>
+            {% endif %}
+        </div>
+        <br>
+        <br>
 
     </div>
 
