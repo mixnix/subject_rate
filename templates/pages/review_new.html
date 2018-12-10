@@ -39,12 +39,16 @@
                                 <label for="id_course_name">Course name:</label>
                                 <br>
                                 {{ form.course_name }}
+
                             </p>
+                            <p>Don't see subject on the list? <a href="{% url 'course-new' %}">Add it!</a></p>
+
                             <p>
                                 <label for="id_professor_name">Professor name:</label>
                                 <br>
                                 {{ form.professor_name }}
                             </p>
+                            <p>Don't see professor on the list? <a href="{% url 'professor-new' %}">Add him!</a></p>
                         </div>
                     </div>
                 </div>
