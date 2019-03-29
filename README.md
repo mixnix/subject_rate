@@ -2,6 +2,9 @@
 
 Web application in python for rating univeristy courses.
 
+[Live Version](https://knu-subject-rate.herokuapp.com/
+)
+
 ## Getting Started
 
 
